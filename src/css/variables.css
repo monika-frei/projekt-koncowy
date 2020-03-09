@@ -1,0 +1,28 @@
+* {
+    --welcome-background-color: rgba(255,255,255,0.3);
+    --welcome-background-color-button: rgba(255,255,255,0.3);
+    --welcome-main-font-color:  #422D26;
+    --home-background-color:      #C9C4B6;
+    --header-background-color: #E9E0D0;
+    --logo-primary-color: #b2b0a9;
+    --logo-animation-color: #F9F9F9;
+    --logo-animation-color-text: #424242;
+    --trip-card-background-color:#E9E0D0; 
+    --trip-card-border-color:#b2b0a9; 
+
+    --main-search-primary-color: #CA2A18;
+    --buttons-fill-color: #CA2A18;
+
+    --hamburger-menu-primary-color:#000;
+    --hamburger-menu-background-color: rgba(255,255,255,0.9);
+    --header-primary-color:    #C9C4B6;
+    --menu-overlay-color: #1d1716;
+
+    --media-query-width-small: 640px;
+    --media-query-width-medium: 641px;
+    --media-query-width-large: 1008px;
+
+    --main-font-family: 'Lato', Arial, sans-serif;
+    --main-font-size: 16px;
+
+}
