@@ -1,0 +1,171 @@
+.form__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--logo-animation-color-text);
+    width: 70%;
+    margin: 2rem auto;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--main-search-primary-color);
+    border-top: 1px solid var(--main-search-primary-color);
+}
+
+.form__container--createtrip {
+    border: 1px solid var(--main-search-primary-color);
+}
+
+.form__container--createtrip form {
+    width: 80%;
+}
+
+.form__container h1 {
+    padding: 0.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+.stops__list {
+    color: var(--logo-animation-color-text);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stops__list li {
+    line-height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%; 
+    border-bottom: 1px solid var(--main-search-primary-color);   
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.stops__list li .btn--delete {
+    background-color: var(--header-background-color);
+    border: 1px solid var(--main-search-primary-color);
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    margin: 0.2rem 1rem;
+    color: var(--logo-animation-color-text);
+    cursor: pointer;
+}
+
+.form__container label {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.form__container input {
+    border: none;
+    border-bottom: 1px solid var(--main-search-primary-color);
+    background-color: transparent;
+    width: 100%;
+    margin: 0.5rem auto;
+    display: inline-block;
+    line-height: 2rem;
+    font-size: 1.2rem;
+}
+
+input:focus {
+    background-color: var(--header-background-color);
+    border: 2px solid var(--main-search-primary-color);
+}
+
+
+.input__field--login, .btn--action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 1rem;
+}
+
+.form__container .btn {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin-bottom: 0.5rem;
+    background-color: var(--buttons-fill-color);
+    color: var(--trip-card-background-color);
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.form__container textarea {
+    width: 100%;
+    height: 150px;
+    background-color: transparent;
+    border: 1px solid var(--main-search-primary-color);
+    margin-top: 0.5rem;
+}
+
+@media all and (min-width: 768px) and (max-width: 1223px) {
+    .form__container h1 {
+        font-size: 1.2rem;
+    }
+
+    .form__container label {
+        font-size: 1rem;
+    }
+}
+
+@media all and (min-width: 1224px) {
+
+    .form__container {
+        width: 60%;
+    }
+
+    .form__container h1 {
+        font-size: 1.5rem;
+    }
+
+    .form__container .btn::after, .form__container .btn::before  {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        z-index: -1;
+        width: 0;
+        height: 100%;
+        background-color: var(--trip-card-background-color);
+        transition: all 0.4s;
+    }
+
+    .form__container .btn::after {
+        top: 0;
+        left: 50%;
+    }
+
+    .form__container .btn::before {
+        top: 0;
+        right: 50%;
+    }  
+
+    .form__container .btn:hover {
+        color: var(--buttons-fill-color);
+        border: 2px solid var(--buttons-fill-color);
+    
+    }
+
+    .form__container .btn:hover::after, .form__container .btn:hover::before  {
+        width: 100%;
+    }
+
+
+
+
+
+}

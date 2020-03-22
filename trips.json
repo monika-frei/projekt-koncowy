@@ -3,6 +3,7 @@
     {
       "id": 1,
       "destination": "Poland",
+      "stops": ["Warszawa", "Kraków","Gdańsk"],
       "duration": "2 weeks",
       "images": [],
       "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis tellus posuere ipsum placerat pharetra a ut leo. Maecenas facilisis sodales hendrerit.",
@@ -11,6 +12,7 @@
     {
       "id": 2,
       "destination": "Czech Republic",
+      "stops": ["Praga"],
       "duration": "4 weeks",
       "images": [],
       "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis tellus posuere ipsum placerat pharetra a ut leo. Maecenas facilisis sodales hendrerit.",
@@ -19,6 +21,7 @@
     {
       "id": 3,
       "destination": "USA",
+      "stops": ["Waszyngton", "Nowy Jork", "Boston"],
       "duration": "2 weeks",
       "images": [],
       "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis tellus posuere ipsum placerat pharetra a ut leo. Maecenas facilisis sodales hendrerit.",
@@ -27,6 +30,7 @@
     {
       "id": 4,
       "destination": "Berlin",
+      "stops": ["Berlin"],
       "duration": "2 weeks",
       "images": [],
       "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis tellus posuere ipsum placerat pharetra a ut leo. Maecenas facilisis sodales hendrerit.",

@@ -1,0 +1,126 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.trip__container {
+    width: 70%;
+    margin: 0.5rem auto;
+    padding: 1rem;
+    background-color: var(--trip-card-background-color);
+    border-radius: 3px;
+}
+
+.trip__container .trip__destination {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--main-search-primary-color);
+}
+
+.trip__container .trip__duration {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 0.8rem; 
+    font-size: 1rem;   
+}
+
+.trip__container .trip__stops {    
+    border-bottom: 1px solid var(--logo-animation-color-text);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+
+}
+
+.trip__container .trip__stops .stops {
+    font-weight: 300;
+    margin-bottom: 1.5rem; 
+    font-size: 1rem; 
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.trip__container .trip_stops .stops li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.trip__container .stops {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.trip__container .trip__description {
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+.trip__container .trip__author {
+    display: block;
+    text-align: left;
+
+}
+
+.trip__btn {
+    margin: 0 auto;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    padding: 0;
+    border: 2px solid var(--buttons-fill-color);
+    background-color: var(--buttons-fill-color);
+    border-radius: 2px;
+    color: var(--trip-card-background-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.trip__container .trip__created {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: 300;
+}
+
+@media all and (min-width: 1224px) {
+    .trip__container {
+        width: 60%;
+        padding-left:4rem;
+        padding-right:4rem;
+        margin-top: 2rem;
+        display: grid;
+    }
+
+    .trip__container .trip__destination {
+        font-size: 2rem;
+    }
+
+    .trip__btn:hover {
+        color: var(--buttons-fill-color);
+        background-color: transparent;
+        border: 2px solid;
+        border-color: var(--buttons-fill-color);
+    
+    }
+
+    .trip__container .trip__destination {
+        font-size: 2rem;
+    }
+
+
+
+}

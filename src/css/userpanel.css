@@ -1,0 +1,163 @@
+.panel__container {
+width: 100%;
+height: 100vh;
+
+}
+
+.panel__container h1 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 1rem auto;
+    text-align: center;
+    color: var(--buttons-fill-color);
+}
+
+.panel__container .usertrips {
+    display: flex;
+    justify-items: center;
+    justify-content: space-evenly;  
+    align-items: center;  
+    flex-direction: column;
+
+}
+
+.trip{
+    width: 250px;
+    height: 400px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;    
+    background-color: var(--trip-card-background-color);
+}
+
+.trip__info {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.trip__info .destination {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    
+
+}
+
+.trip__info .duration {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+.trip__images {
+    width:100%;
+    height: 150px;
+    background-image: url('../images/camp-4363073_640.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-bottom: 1rem;
+}
+
+.trip__decsription {
+    text-align: center;
+    margin-bottom: 1rem;
+    height: 70px;
+    width:150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.trip__more {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip__button {
+    margin: 0 auto;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    padding: 0;
+    border: 2px solid;
+    border-color: var(--logo-animation-color-text);
+    background-color: transparent;
+    border-radius: 2px;
+    color: var(--logo-animation-color-text);
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.trip__button:hover {
+    color: var(--trip-card-background-color);
+    background-color: var(--logo-animation-color-text);
+}
+
+@media all and (min-width: 1224px) {
+
+
+    .panel__container .usertrips .trip {
+        width: 800px;
+        height: 500px;
+        padding: 2rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 30% 80%;
+        grid-column-gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--trip-card-background-color);    
+    }
+
+    .panel__container h1 {
+        font-size: 2rem;
+    }
+
+    .usertrips .trip .trip__info {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        width: 100%;
+        justify-self: center;
+        padding-top: 2rem;
+        
+    }
+
+    .usertrips .trip .trip__images {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        width: 100%;
+        height: 250px;
+        margin-bottom: 6rem;
+        background-size: cover;
+    }
+
+    .usertrips .trip .trip__more {
+        grid-column: 2/3;
+        grid-row: 1/3;
+    }
+
+    .usertrips .trip .trip__more .trip__decsription {
+        white-space: normal;
+        text-overflow: initial;
+        width: 100%;
+        height: 350px;
+        overflow-y: scroll;
+        margin-top: 1rem;
+        padding-top: 0;
+        text-align: justify;
+    }
+}
+

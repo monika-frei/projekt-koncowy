@@ -5,10 +5,10 @@ class MainSearcher extends Component {
 
     render() {
         if(this.props.searchButtonActive){
-            return <div id="main__searcher" className={this.props.searcherClass}>
-            <input type="text" id="main__searcher__input" placeholder="Where are you going?"></input>
+            return <form id="main__searcher" className={this.props.searcherClass} onSubmit={this.props.search}>
+            <input type="text" id="main__searcher__input" placeholder="Where are you going?" value={this.props.searchInputValue} onChange ={this.props.changeInput}></input>
             <button id= "main__search" className="search__button"><i className= "icon__search"></i></button>
-            </div>;
+            </form>;
         } else {
             return null;
         }

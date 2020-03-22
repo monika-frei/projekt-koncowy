@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -20,5 +22,8 @@ body {
 }
 
 @import url('./css/variables.css');
-@import url('./css/welcomePage.css');
 @import url('./css/homePage.css');
+@import url('./css/tripList.css');
+@import url('./css/forms.css');
+@import url('./css/trip.css');
+@import url('./css/userpanel.css')
