@@ -31,13 +31,7 @@ class Header extends Component {
         }
     }    
 
-    handleCloseMenu = () => {
-        this.setState({
-            // active: false,
-            // classActive: "",
-            classActiveNav: "navigation"
-        })
-    }
+    
     render() {
         const { auth } = this.props
         const links = auth.uid ? <SingnedInLinks classActiveNav = {this.state.classActiveNav} handleMainContent = {this.props.handleMainContent} /> : <SignedOutLinks classActiveNav = {this.state.classActiveNav} handleMainContent = {this.props.handleMainContent}/>

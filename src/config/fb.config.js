@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 //Initialize firebase
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyCaKRNm8X6WVElH8zC20kc5E1Lvr_J0SjE",
     authDomain: "travel-page-55969.firebaseapp.com",
     databaseURL: "https://travel-page-55969.firebaseio.com",

@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signOut } from '../../store/actions/authActions'
+import { filterTrips } from '../../store/actions/searchActions'
 
 
-const SignedInLinks = (props) => {
+class SignedInLinks extends Component {
 
-    const { profile } = props
+    handleMainContent = () => {
+        const value = ""
+        this.props.filterTrips(value)
+    }
     
-    return (
-        <nav className= {props.classActiveNav}>
-            <ul>
-                <li onClick={props.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color:'inherit'} }>Home</NavLink></li>
-                <li><NavLink to='/createtrip' style= {{textDecoration: 'none', color:'inherit'}}>Create a new trip</NavLink></li>
-                <li><NavLink to='/userpanel' style= {{textDecoration: 'none', color:'inherit'}}>Saved trips</NavLink></li>
-                <li><a onClick={props.signOut}>Log out</a></li>
-                <li className = "navigation__user--logged">{props.profile.firstName}</li>
-            </ul>
-        </nav>
-    )
+    render(){
+        const { profile } = this.props
+        return (
+            <nav className= {this.props.classActiveNav}>
+                <ul>
+                    <li onClick={this.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color:'inherit'} }>Home</NavLink></li>
+                    <li><NavLink to='/createtrip' style= {{textDecoration: 'none', color:'inherit'}}>Create a new trip</NavLink></li>
+                    <li><NavLink to='/userpanel' style= {{textDecoration: 'none', color:'inherit'}}>Saved trips</NavLink></li>
+                    <li><a onClick={this.props.signOut}>Log out</a></li>
+                    <li className = "navigation__user--logged">{this.props.profile.firstName}</li>
+                </ul>
+            </nav>
+        )
+    }
+    
 }
 
 const mapStateToProps = (state) => {
@@ -30,7 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOut: () => dispatch(signOut())
+        signOut: () => dispatch(signOut()),
+        filterTrips: value => dispatch(filterTrips(value))
     }
 }
 

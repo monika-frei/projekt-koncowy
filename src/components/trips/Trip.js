@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
+import { filterTrips } from '../../store/actions/searchActions'
 
 class Trip extends Component {
 
@@ -12,25 +13,13 @@ class Trip extends Component {
         src: ''
     }
 
-//     componentDidMount() {
-//         let id = this.props.match.params.id;
-//         axios.get('http://localhost:3000/trips/' + id)
-//         .then(response => this.setState({trip: response.data}))
-//    }
-    handleHomeButton = (e) => {
-        e.preventDefault();
-        
+    handleMainContent = () => {
+        const value = ""
+        this.props.filterTrips(value)
     }
-
-    // componentDidMount() {
-    //     this.setState({
-    //         src: this.props.src
-    //     })
-    // }
 
     render() {
         const { trip } = this.props;
-        console.log(trip.src)
         if(trip) { 
             return (<div className="wrapper">
             <div className = "trip__container">
@@ -43,14 +32,14 @@ class Trip extends Component {
                             })}
                         </ul>
                     </div>
+                    <img src = {`data:image/jpg;base64,${trip.src}`} style={{width:'60%', height: '200px'}} className= "trip__images"></img>
                     <p className= "trip__description">{trip.info}</p>
-                    <img src = {`data:image/jpg;base64,${trip.src}`} style={{width:'100px', height: '100px'}}></img>
                     <div className = "trip__created">
-                    <span className = "trip__author">{trip.authorFirstName}</span>
-                    <p>{moment(trip.createdAt.toDate()).startOf('day').fromNow()}</p>
-                    </div>
+                        <span className = "trip__author">{trip.authorFirstName}</span>
+                        <p>{moment(trip.createdAt.toDate()).startOf('day').fromNow()}</p>
+                    </div>                
+                    <button className="trip__btn" onClick = {this.handleMainContent}><Link to = "/">Home</Link></button>
                 </div>
-                <Link to = "/"><button className="trip__btn">Home</button></Link>
                 </div>)
             } else {
             return (<p>Loading trip...</p>)}
@@ -62,12 +51,19 @@ const mapStateToProps = (state, ownProps) => {
     const  trips  = state.firestore.data.trips;
     const trip = trips ? trips[id] : null;
     return {
-        trip
+        trip,
+        id
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        filterTrips: value => dispatch(filterTrips(value))
     }
 }
 
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         {collection: 'trips'}
     ])

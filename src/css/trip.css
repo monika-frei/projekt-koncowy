@@ -1,8 +1,5 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+ 
     margin-bottom: 2rem;
 }
 .trip__container {
@@ -11,7 +8,17 @@
     padding: 1rem;
     background-color: var(--trip-card-background-color);
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.trip__container .trip__created {
+    align-self: flex-end;
+} 
+
+
 
 .trip__container .trip__destination {
     text-align: center;
@@ -96,13 +103,17 @@
     font-weight: 300;
 }
 
+.trip__container img {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 @media all and (min-width: 1224px) {
     .trip__container {
         width: 60%;
         padding-left:4rem;
         padding-right:4rem;
         margin-top: 2rem;
-        display: grid;
     }
 
     .trip__container .trip__destination {
@@ -120,6 +131,10 @@
     .trip__container .trip__destination {
         font-size: 2rem;
     }
+
+     .trip__container .trip__created {
+        align-self: flex-end;
+    } 
 
 
 

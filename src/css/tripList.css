@@ -52,12 +52,10 @@
 
 .trip__card__images {
     width:100%;
-    height: 150px;
-    background-image: url('../images/camp-4363073_640.png');
+    height: 200px;
     background-repeat: no-repeat;
     background-size: contain;
     margin-bottom: 1rem;
-
 }
 
 

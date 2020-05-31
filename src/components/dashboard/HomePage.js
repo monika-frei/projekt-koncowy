@@ -8,6 +8,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import UserPanel from './UserPanel';
 import NewSearch from './NewSearch';
+import { getTripsThunk } from '../../store/actions/tripActions'
+
 
 
 class HomePage extends Component {
@@ -20,13 +22,6 @@ class HomePage extends Component {
       filteredTrips: []
     }
 }
-// componentDidMount(){
-//   axios.get('http://localhost:3000/trips')
-//   .then(response => this.setState({
-//     tripsData: response.data
-//   }))
-// }
-
 
 changeInputSearch = (e) => {
   e.preventDefault();
@@ -58,25 +53,11 @@ handleSearch = (e) => {
     return (
       <div className = "home">
         <MainSearcher searchButtonActive = {this.props.searchButtonActive} searcherClass = {this.props.searcherClass} search = {this.handleSearch} changeInput = {this.changeInputSearch} searchInputValue = {this.state.searchInputValue} /> 
-        <MainSearcherDesktop  search = {this.handleSearch} changeInput = {this.changeInputSearch} searchInputValue = {this.state.searchInputValue}/>
-        <TripsList filteredTrips = {this.props.backToMain ? [] : this.state.filteredTrips} />
+        <MainSearcherDesktop />
+        <TripsList />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-      trips: state.firestore.ordered.trips,
-  }
-}
-
-export default compose(
-  firestoreConnect([
-      {collection: 'trips'}
-  ]),
-  connect(mapStateToProps),
-)(HomePage);
-
-
+export default HomePage

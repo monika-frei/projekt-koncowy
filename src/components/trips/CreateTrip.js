@@ -1,8 +1,8 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux'
-import { createTrip } from '../../store/actions/tripActions'
+import { sendFiles, createTripInfo } from '../../store/actions/tripActions'
 import { Redirect } from 'react-router-dom'
-import ReactFileReader from 'react-file-reader';
+import UploadImages from './UploadImages';
 
 class CreateTrip extends Component {
 
@@ -47,11 +47,6 @@ class CreateTrip extends Component {
        })       
     }
 
-    handleClickImage = () => {
-        let input = this.refs.input__reader;
-        input.click();
-        console.log(this.state.src)
-    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -60,11 +55,13 @@ class CreateTrip extends Component {
             stops: this.state.stops,
             duration: this.state.duration,
             info: this.state.info,
-            src: this.state.src
         }
 
-        this.props.createTrip(newTrip)
-        this.props.history.push('/')
+        const files = this.props.files;
+        if(files) {
+            this.props.createTrip(newTrip)
+            // this.props.history.push('/')
+        }
     }
 
     handleStopButton = (e) => {
@@ -87,8 +84,8 @@ class CreateTrip extends Component {
     }
 
     render() {
-
-        console.log(this.state.src)
+        console.log(this.props.state)
+        console.log(this.props.files.files);
         const stopsList = this.state.stops.map( stop => {
             let index = this.state.stops.indexOf(stop);
                 return(
@@ -100,10 +97,11 @@ class CreateTrip extends Component {
         })
 
 
-        const { auth } = this.props;
-        if (!auth.uid) return <Redirect to='/signin'></Redirect>
+        // const { auth } = this.props;
+        // if (!auth.uid) return <Redirect to='/signin'></Redirect>
 
         return(
+            
         <div className = "form__container form__container--createtrip">
             <form onSubmit={this.handleSubmit}>
                 <h1>Save Your Trip!</h1>
@@ -125,17 +123,18 @@ class CreateTrip extends Component {
                    <label htmlFor= "duration">Duration</label>
                    <input type="text" id="duration" onChange={this.handleChange} required/> 
                 </div>
-                <div className = "input__field">
+                {/* <div className = "input__field">
                    <label htmlFor= "images">Image</label>
-                   <input type="file" id="images" name= "files[]" value = {this.state.image} onChange={this.handleChangeImage}/>
-                   {/* <button onClick={this.handleClickImage} ref="input__reader">Add</button> */}
-                </div>
+                   <input type="file" id="images"  value = {this.state.image} onChange={this.handleChangeImage}/>
+                </div> */}
                 <div className = "input__field">
                    <label htmlFor= "info">Description</label>
                    <textarea type="text" id="info" onChange={this.handleChange} required/> 
                 </div>
+                < UploadImages />
                 <div className = "input__field btn--action">
                    <button className = "btn">Create</button>
+                   <button className = "btn" onClick= {this.handleId}>get id</button>
                 </div>
             </form>
         </div>
@@ -144,13 +143,16 @@ class CreateTrip extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        files: state.files,
+        state
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createTrip: (trip) => dispatch(createTrip(trip)),
+        // sendFiles: (trip) => dispatch(sendFiles(files)),
+        createTrip: (trip) => dispatch(createTripInfo(trip))
     }
 }
 

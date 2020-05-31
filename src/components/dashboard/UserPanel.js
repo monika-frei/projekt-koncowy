@@ -30,7 +30,7 @@ class UserPanel extends Component {
                                 <h1 className= "destination">{trip.destination}</h1>
                                 <h2 className= "duration">{trip.duration}</h2>
                             </div>
-                            <div className= "trip__images"></div>
+                            <img className= "trip__images" src = {`data:image/jpg;base64,${trip.src}`} style={{width:'100%', height: '200px'}}></img>
                             <div className= "trip__more">
                                 <div className= "trip__decsription">{trip.info}</div>
                                     <button className="trip__button" onClick={() => this.handleDeleteButton(trip)}>Delete</button>

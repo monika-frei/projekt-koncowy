@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './store/reducers/rootReducer';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger'
 import { getFirestore, createFirestoreInstance, reduxFirestore } from 'redux-firestore';
 import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import 'firebase/storage'
@@ -25,6 +26,7 @@ const store = createStore(
     rootReducer,
     compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    applyMiddleware(logger),
     reduxFirestore(firebase, fbConfig),
     )
 );
