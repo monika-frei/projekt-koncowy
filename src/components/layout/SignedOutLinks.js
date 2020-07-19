@@ -15,9 +15,9 @@ class SignedOutLinks extends Component {
         return (
             <nav className= {this.props.classActiveNav} onClick = {this.props.handleCloseMenu}>
                 <ul>
-                    <li onClick={this.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color:'inherit'}}>Home</NavLink></li>
-                    <li><NavLink to='/signup' style= {{textDecoration: 'none', color:'inherit'}}>Sign Up</NavLink></li>
-                    <li><NavLink to='/signin' style= {{textDecoration: 'none', color:'inherit'}}>Log in</NavLink></li>
+                    <li onClick={this.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color: '#040505'}}>Home</NavLink></li>
+                    <li><NavLink to='/signup' style= {{textDecoration: 'none',color: '#040505'}}>Sign Up</NavLink></li>
+                    <li><NavLink to='/signin' style= {{textDecoration: 'none', color: '#040505'}}>Log in</NavLink></li>
                 </ul>
             </nav>
         )

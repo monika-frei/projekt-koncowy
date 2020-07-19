@@ -8,7 +8,6 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateTrip from './components/trips/CreateTrip';
 import UserPanel from './components/dashboard/UserPanel';
-import UploadTripImage from './components/trips/UploadTripImage';
 import UpdateTrip from './components/trips/UpdateTrip';
 import { connect } from 'react-redux'
 
@@ -74,6 +73,7 @@ class App extends Component {
             <Route path = '/signin' component= { SignIn }/>
             <Route path = '/signup' component= { SignUp }/>
             <Route path = '/createtrip' component= { CreateTrip }/>
+            <Route path = '/updatetrip' component= { UpdateTrip }/>
             <Route path = '/userpanel' render= { (props) => <UserPanel {...props} handleEditButton = {this.handleEditButton} /> } />
           </Switch>
         </div>

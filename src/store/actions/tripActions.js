@@ -1,5 +1,3 @@
-import { getNodeText } from "@testing-library/react"
-
 export const formDestination = (destination) => ({
     type: 'SAVE_DESTINATION',
     destination
@@ -10,18 +8,35 @@ export const formStops = (stops) => ({
     stops
 })
 
-export const formDuration = (duration) => ({
-    type: 'SAVE_DURATION',
-    duration
+export const formStartDate = (startDate) => ({
+    type: 'SAVE_START_DATE',
+    startDate
 })
 
-export const selectFiles = (files) => ({
-    type: 'SELECT_FILES',
-    files
+export const formEndDate = (endDate) => ({
+    type: 'SAVE_END_DATE',
+    endDate
 })
 
-export const addTripStarted = () => ({
+export const formTransport = (transport) => ({
+    type: 'SAVE_TRANSPORT',
+    transport
+})
+
+export const formInfo = (info) => ({
+    type: 'SAVE_INFO',
+    info
+})
+
+export const formFiles = (files, filesUrl) => ({
+    type: 'SAVE_FILES',
+    files,
+    filesUrl
+})
+
+const addTripStarted = () => ({
     type: 'ADD_TRIP_STARTED',
+    
 
 })
 
@@ -30,7 +45,7 @@ export const createTripInfo = (trip)  => {
         const firestore = getFirestore();
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
-        const images = getState().files.files;
+        const images = getState().formCreateTrip.stepThree.files;
         const files = [...images];
 
         dispatch(addTripStarted());
@@ -92,75 +107,10 @@ export const sendFiles = (id,files) => {
             }) 
 }}
 
-
-
-export const sendTrip = (imagesUrl, id) => {
-    return(dispatch, getState, { getFirebase, getFirestore }) => {
-        const firestore = getFirestore();
-        const firebase = getFirebase();
-        const profile = getState().firebase.profile;
-        const authorId = getState().firebase.auth.uid;
-        const images = imagesUrl;
-        const tripId = id;
-        
-        
-
-        firestore.collection('trips').doc(tripId)
-        .get()
-        .then(() => {
-            firestore.collection('trips').doc(tripId).update({images})
-        })
-        .then(() => dispatch({type:'SEND_TRIP_IMAGES_SUCCESS'}))
-        .catch((error) => dispatch({type:'SEND_TRIP_IMAGES_ERROR',error}))       
-    }
-}
-
-// export const createTrip = (trip) => {
-//      return (dispatch, getState, { getFirebase, getFirestore }) => {
-
-//         const firestore = getFirestore();
-//         const firebase = getFirebase();
-//         const profile = getState().firebase.profile;
-//         const authorId = getState().firebase.auth.uid;
-//         const images = getState().files.files
-//         const files = [...images]
-//         let imagesUrl =[];
-        
-//         files.forEach((file) => {
-//             const uploadTask = firebase.storage().ref(`images/${authorId}/${file.name}`)
-//             .put(file);
-
-//             uploadTask.on("state_changed",
-//             (snapshot) => {
-//                 Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100);
-//             },
-//             error => {
-//             },
-//             () => {
-//                 firebase.storage().ref(`images/${authorId}`)
-//                 .child(file.name)
-//                 .getDownloadURL()
-//                 .then(url => {
-//                     imagesUrl= [...imagesUrl,url]
-//                     console.log(imagesUrl)
-//                 })
-//             })
-//         })
-//             firestore.collection('trips').add({
-//                 ...trip,
-//                 imagesUrl: imagesUrl,
-//                 authorFirstName: profile.firstName,
-//                 authorLastName: profile.lastName,
-//                 authorId: authorId,
-//                 createdAt: new Date(),
-//             })
-//             .then(() => {
-//                 dispatch({type: 'ADD_TRIP', trip})
-//             }).catch((error) => {
-//                 dispatch({type: 'ADD_TRIP_ERROR', error})
-//             })
-//         }
-//     }
+export const classInvisible = (invisible) => ({
+    type: 'ADD_CLASS_INVISIBLE',
+    invisible
+})
 
 export const deleteTrip = (id) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
@@ -168,67 +118,45 @@ export const deleteTrip = (id) => {
         const firebase = getFirebase();
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
-        let tripId = id
-        console.log(tripId)
 
-        firestore.collection('trips').doc(tripId).delete();
+        firestore.collection('trips').doc(id).delete()
+        .then(() => {
+            firebase.storage().ref(`images/${authorId}/${id}`).delete()
+        })
+        .then(() => dispatch({type: 'DELETE_TRIP'}))
+        .catch((error) => {
+            dispatch({type: 'DELETE_TRIP_ERROR', error})
+        }) 
     }
 }
 
-// export const createTrip = (destination, stops, duration, images) => {
-//     return (dispatch, getState, { getFirebase, getFirestore }) => {
+export const editTrip = (id) => ({
+    type: 'EDIT_USER_TRIP',
+    id
+})
 
-//        const firestore = getFirestore();
-//        const firebase = getFirebase();
-//        const profile = getState().firebase.profile;
-//        const authorId = getState().firebase.auth.uid;
+export const updateTrip = (trip,id)  => {
+    return(dispatch, getState, { getFirestore, getFirebase }) => {
+        const firestore = getFirestore();
+        const firebase = getFirebase();
+        const authorId = getState().firebase.auth.uid;
+        const images = getState().formCreateTrip.stepThree.files;
+        const files = [...images];
 
-//            firestore.collection('trips').add({
-//                ...trip,
-//                authorFirstName: profile.firstName,
-//                authorLastName: profile.lastName,
-//                authorId: authorId,
-//                createdAt: new Date(),
-//            })
-//            .then(() => {
-//                dispatch({type: 'ADD_TRIP', trip})
-//            }).catch((error) => {
-//                dispatch({type: 'ADD_TRIP_ERROR', error})
-//            })
-//        }
-//    }
-    
-
-
-
-
-
-// export const updateTripImage = (file, fileName) => 
-//     async (dispatch, getState, { getFirebase, getFirestore }) => {
-//         const firestore = getFirestore();
-//         const firebase = getFirebase();
-//         const profile = getState().firebase.profile;
-//         const authorId = getState().firebase.auth.uid;
-//         const tripId = getState().firebase.trip.id;
-//         const path = `${tripId}/trip_image`;
-//         const options = {
-//             name: fileName
-//         }
         
-//         try {
 
-//             let uploadedFile = await firebase.uploadFile(path, file, null, options);
-//             let downloadURL = await uploadedFile.uploadTaskSnapshot.ref.getDownloadURL();
-//             let tripDoc = await firestore.get(`trips/${tripId}`);
-
-//             if(!tripDoc.data().imageURL) {
-//                 await firebase.updateTrip({
-//                     imageURL: downloadURL
-//                 })
-//             }
-
-//         } catch(error) {
-//             console.log(error)
-//         }
-// }
+        firestore.collection('trips').doc(id).update({
+            ...trip,
+            createdAt: new Date(),
+        })
+        .then(() => {
+            dispatch(sendFiles(id,files))
+        })
+        .then(() => dispatch({type: 'UPDATE_TRIP',trip}))
+        .catch((error) => {
+            dispatch({type: 'UPDATE_TRIP_ERROR', error})
+        })    
+      
+    }
+}
 

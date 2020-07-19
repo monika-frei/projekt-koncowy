@@ -4,15 +4,16 @@
     justify-content: center;
     align-items: center;
     color: var(--logo-animation-color-text);
+    background-color: var(--form-background-color);
+    border: 3px solid var(--form-btn-border-color);
     width: 70%;
     margin: 2rem auto;
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--main-search-primary-color);
-    border-top: 1px solid var(--main-search-primary-color);
+    
 }
 
 .form__container--createtrip {
-    border: 1px solid var(--main-search-primary-color);
+    /* border: none; */
 }
 
 .form__container--createtrip form {
@@ -20,71 +21,47 @@
 }
 
 .form__container h1 {
-    padding: 0.5rem;
+    padding: 2rem 0.5rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 1rem;
+    font-size: 2rem;
+    margin-bottom: 50px;
 }
 
-.stops__list {
-    color: var(--logo-animation-color-text);
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
-
-.stops__list li {
-    line-height: 1.2rem;
+.form__input__wrapper {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 30%; 
-    border-bottom: 1px solid var(--main-search-primary-color);   
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    align-items: baseline;
 }
-
-.stops__list li .btn--delete {
-    background-color: var(--header-background-color);
-    border: 1px solid var(--main-search-primary-color);
-    padding: 0.2rem;
-    font-size: 0.8rem;
-    margin: 0.2rem 1rem;
-    color: var(--logo-animation-color-text);
-    cursor: pointer;
+.form__input__wrapper .input__field:first-of-type {
+    margin-right: 20px;
 }
 
 .form__container label {
     display: inline-block;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
 }
 
 .form__container input {
     border: none;
-    border-bottom: 1px solid var(--main-search-primary-color);
-    background-color: transparent;
+    border-radius: 5px;
+    background-color: var(--form-input-background-color);
     width: 100%;
     margin: 0.5rem auto;
-    display: inline-block;
+    padding: 5px;
     line-height: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    text-transform: lowercase;
 }
 
-input:focus {
-    background-color: var(--header-background-color);
-    border: 2px solid var(--main-search-primary-color);
-}
-
-
-.input__field--login, .btn--action {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding-top: 1rem;
+.stops__list {
+    color: var(--form-font-color);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    /* border: 1px solid var(--form-input-border-color); */
 }
 
 .form__container .btn {
@@ -95,28 +72,233 @@ input:focus {
     height: 50px;
     padding: 0;
     margin-bottom: 0.5rem;
-    background-color: var(--buttons-fill-color);
-    color: var(--trip-card-background-color);
-    border: none;
+    background-color: transparent;
+    color: var(--form-btn-border-color);
+    border: 2px solid var(--form-btn-border-color);
+    border-radius: 5px;
     font-weight: 700;
     text-transform: uppercase;
     overflow: hidden;
     letter-spacing: 1px;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
-.form__container textarea {
-    width: 100%;
-    height: 150px;
-    background-color: transparent;
-    border: 1px solid var(--main-search-primary-color);
-    margin-top: 0.5rem;
+.btn--action {
+    display: flex;
+    justify-content: flex-end;
 }
+
+.btn--action button {
+    margin-right: 20px;
+}
+
+.stops__list li {
+    line-height: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
+    padding: 5px; 
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    border: 1px solid var(--form-input-border-color);
+    border-radius: 5px;
+}
+
+.stops__list li .btn--delete {
+    background-image: url('../images/close.svg');
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+div.date__picker {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transport {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.transport p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    
+}
+
+label[for=bus], label[for=car], label[for=airplane], label[for=train], label[for=ship],
+label[for=hitchhiking], label[for=bike], label[for=other], label[for=onfoot] {
+    position: relative;
+    margin-left: 60px;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    padding: 20px;
+    line-height: 40px;
+}
+
+label[for=bus]::before, label[for=car]::before, label[for=airplane]::before, label[for=train]::before, label[for=ship]::before,
+label[for=hitchhiking]::before, label[for=bike]::before, label[for=other]::before, label[for=onfoot]::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -60px;
+    z-index:-1;
+    width: 40px;
+    height: 40px;
+    
+    background-size: contain;
+}
+
+label[for=bus]::before {
+    background-image: url('../images/double-decker-bus.svg');
+}
+
+label[for=car]::before {
+    background-image: url('../images/automotive.svg');
+}
+
+label[for=airplane]::before {
+    background-image: url('../images/plane.svg');
+}
+
+label[for=train]::before {
+    background-image: url('../images/train.svg');
+}
+
+label[for=ship]::before {
+    background-image: url('../images/ship.svg');
+}
+
+label[for=hitchhiking]::before {
+    background-image: url('../images/hitchhiker.svg');
+}
+
+label[for=bike]::before {
+    background-image: url('../images/bike.svg');
+}
+
+label[for=onfoot]::before {
+    background-image: url('../images/mountain.svg');
+}
+
+label[for=other]::before {
+    background-image: url('../images/spaceship.svg');
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    left: 200px;
+    top:25%;
+    width: 40px;
+    height: 40px;
+    background-color:  var(--form-input-background-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked + label::after{
+    background-image: url('../images/close2.svg');
+    background-size: contain;
+    background-clip: border-box;
+    border: 8px solid var(--form-input-background-color);
+
+}
+
+label[for=info] {
+    font-size: 1.2rem;
+}
+textarea#info {
+    resize: none;
+    width: 100%;
+    height: 450px;
+    background-color: var(--form-input-background-color);
+    outline: none;
+    border: 3px solid var(--form-input-border-color);
+    margin-top: 20px;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+.images__upload__preview {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.images__upload__preview li {
+    list-style-type: none;
+    margin: 5px;
+}
+
+.summary {
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--form-input-background-color);
+    color: var(--form-input-border-color);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+
+.summary ul li {
+    list-style-type: none;
+}
+
+.summary h2 {
+    text-transform: uppercase;
+    align-self: center;
+}
+.summary .summary__list {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.summary__list:nth-of-type(2) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul.summary__list:nth-of-type(1) li {
+    margin-right: 10px;
+}
+
+.summary .summary__info {
+    font-size: 1.2rem;
+    padding: 10px;
+    text-align: justify;
+}
+
 
 @media all and (min-width: 768px) and (max-width: 1223px) {
-    .form__container h1 {
+    /* .form__container h1 {
         font-size: 1.2rem;
-    }
+    } */
 
     .form__container label {
         font-size: 1rem;
@@ -129,9 +311,9 @@ input:focus {
         width: 60%;
     }
 
-    .form__container h1 {
+    /* .form__container h1 {
         font-size: 1.5rem;
-    }
+    } */
 
     .form__container .btn::after, .form__container .btn::before  {
         content: '';
@@ -140,7 +322,10 @@ input:focus {
         z-index: -1;
         width: 0;
         height: 100%;
-        background-color: var(--trip-card-background-color);
+        background-color: none;
+        background-color: var(--form-btn-border-color);
+        overflow: hidden;
+        border: none;
         transition: all 0.4s;
     }
 
@@ -155,8 +340,8 @@ input:focus {
     }  
 
     .form__container .btn:hover {
-        color: var(--buttons-fill-color);
-        border: 2px solid var(--buttons-fill-color);
+        color: var(--form-btn-hover-color);
+        border: none;
     
     }
 

@@ -1,141 +1,104 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux'
-import { sendFiles, createTripInfo } from '../../store/actions/tripActions'
+import { createTripInfo, formFiles,formDestination, formStops, formStartDate, formEndDate, formTransport, formInfo } from '../../store/actions/tripActions'
 import { Redirect } from 'react-router-dom'
 import UploadImages from './UploadImages';
+import FormStepOne from './FormStepOne';
+import FormStepTwo from './FormStepTwo';
+import Summary from './Summary';
+import ButtonNext from  './ButtonNext';
+import ButtonNextPrev from './ButtonNextPrev';
+import ButtonAdd from './ButtonAdd';
 
 class CreateTrip extends Component {
 
     state = {
-        destination: '',
-        stops: [],
-        duration: '',
-        images: [],
-        info: '',
-        stop: '',
-        image: '',
-        src: '',
-        value: null,
-        output: ''
+        step: 1
     }
 
-    handleChange = (e) => {
-        let value = e.target.value.toLowerCase();
+    handleNextButton = (e) => {
+        e.preventDefault()
         this.setState({
-            [e.target.id] : value
+            step: this.state.step + 1
         })
     }
-
-    handleChangeImage = (e) => {
-       this.setState({
-           image: e.target.value
-       })
-        let image = e.target.files[0];
-        let output = escape(image.name);
-        const reader = new FileReader(); 
- 
-        reader.onload = (e) => {
-
-            let src = window.btoa(e.target.result);
-            this.setState({
-                src: src,
-            })
-        }
-       reader.readAsBinaryString(image);
-       this.setState({
-           value: reader
-       })       
+    handlePrevButton = (e) => {
+        e.preventDefault()
+        this.setState({
+            step: this.state.step - 1
+        })
     }
-
 
     handleSubmit = (e) => {
         e.preventDefault();
         const newTrip = {
-            destination: this.state.destination,
-            stops: this.state.stops,
-            duration: this.state.duration,
-            info: this.state.info,
+            destination: this.props.destination,
+            stops: this.props.stops,
+            startDate: this.props.startDate,
+            endDate: this.props.endDate,
+            transport: this.props.transport,
+            info: this.props.info,
         }
 
         const files = this.props.files;
         if(files) {
             this.props.createTrip(newTrip)
-            // this.props.history.push('/')
+            this.props.history.push('/')
         }
     }
 
-    handleStopButton = (e) => {
-        e.preventDefault();
-        this.setState({
-            stops: [...this.state.stops,this.state.stop],
-            stop: ''
-        })
-    }
+    componentWillUnmount() {
+        const destination = "";
+        const stops = [];
+        const startDate = "";
+        const endDate = "";
+        const transportArray = [];
+        const files = [];
+        const filesUrl = [];
+        const value = "";
 
 
-    handleDeleteStop = (index) => {
-        const stops = this.state.stops.filter((stop) => {
-            let i = this.state.stops.indexOf(stop);
-            return i !== index
-        })
-        this.setState({
-            stops
-        })
+
+        this.props.formFiles(files,filesUrl);
+        this.props.formDestination(destination);
+        this.props.formStops(stops);
+        this.props.formStartDate(startDate);
+        this.props.formEndDate(endDate);
+        this.props.formTransport(transportArray);
+        this.props.formInfo(value)
+
+        
     }
 
     render() {
-        console.log(this.props.state)
-        console.log(this.props.files.files);
-        const stopsList = this.state.stops.map( stop => {
-            let index = this.state.stops.indexOf(stop);
-                return(
-                    <li key={index}>
-                        <span>{stop}</span>
-                        <button className="btn--delete" onClick={() => {this.handleDeleteStop(index)}}>Delete</button>
-                    </li>
-                )
-        })
 
+        const { auth } = this.props;
+        if (!auth.uid) return <Redirect to='/signin'></Redirect>
 
-        // const { auth } = this.props;
-        // if (!auth.uid) return <Redirect to='/signin'></Redirect>
+        let formStep;
+        let buttons;
+        if(this.state.step == 1) {
+            formStep = <FormStepOne destination = {this.props.destination} startDate = {this.props.startDate} endDate = {this.props.endDate} stops = {this.props.stops} transport = {this.props.transport} />
+            buttons = <ButtonNext handleNextButton = {this.handleNextButton} />
+        } else if(this.state.step == 2) {
+            formStep = <FormStepTwo info = {this.props.info} />
+            buttons = <ButtonNextPrev handleNextButton = {this.handleNextButton} handlePrevButton = {this.handlePrevButton} />
+        } else if(this.state.step == 3) {
+            formStep = <UploadImages filesUrl = {this.props.filesUrl} files = {this.props.files} />
+            buttons = <ButtonNextPrev handleNextButton = {this.handleNextButton} handlePrevButton = {this.handlePrevButton} />
+        } else if(this.state.step == 4) {
+            formStep = <Summary destination = {this.props.destination} startDate = {this.props.startDate} endDate = {this.props.endDate} stops = {this.props.stops} transport = {this.props.transport} info = {this.props.info} imagesUrl = {this.props.imagesUrl}  />
+            buttons = <ButtonAdd handlePrevButton = {this.handlePrevButton} handleSubmit = {this.handleSubmit}/>
+        }
+        
 
         return(
             
         <div className = "form__container form__container--createtrip">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit = {this.handleSubmit}>
                 <h1>Save Your Trip!</h1>
-                <div className = "input__field">
-                   <label htmlFor= "destination">Destination:</label>
-                   <input type="text" id="destination" onChange={this.handleChange} required/> 
-                </div>
-                <div className = "input__field">
-                    <label htmlFor= "stop">Add stop:</label>
-                    <input type="text" id="stop" value={this.state.stop} onChange={this.handleChange}/> 
-                    <div className="btn--action">
-                        <button className="btn" onClick={this.handleStopButton}>Add</button>
-                    </div>
-                    <ul className = "stops__list">
-                        { stopsList }
-                    </ul>                    
-                </div>
-                <div className = "input__field">
-                   <label htmlFor= "duration">Duration</label>
-                   <input type="text" id="duration" onChange={this.handleChange} required/> 
-                </div>
-                {/* <div className = "input__field">
-                   <label htmlFor= "images">Image</label>
-                   <input type="file" id="images"  value = {this.state.image} onChange={this.handleChangeImage}/>
-                </div> */}
-                <div className = "input__field">
-                   <label htmlFor= "info">Description</label>
-                   <textarea type="text" id="info" onChange={this.handleChange} required/> 
-                </div>
-                < UploadImages />
-                <div className = "input__field btn--action">
-                   <button className = "btn">Create</button>
-                   <button className = "btn" onClick= {this.handleId}>get id</button>
-                </div>
+                { formStep }
+                { buttons }
             </form>
         </div>
         )
@@ -144,15 +107,27 @@ class CreateTrip extends Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        files: state.files,
-        state
+        files: state.formCreateTrip.stepThree.files,
+        filesUrl: state.formCreateTrip.stepThree.filesUrl,
+        destination: state.formCreateTrip.stepOne.destination,
+        stops: state.formCreateTrip.stepOne.stops,
+        startDate: state.formCreateTrip.stepOne.startDate,
+        endDate: state.formCreateTrip.stepOne.endDate,
+        transport: state.formCreateTrip.stepOne.transport,
+        info: state.formCreateTrip.stepTwo.info
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // sendFiles: (trip) => dispatch(sendFiles(files)),
-        createTrip: (trip) => dispatch(createTripInfo(trip))
+        createTrip: (trip) => dispatch(createTripInfo(trip)),
+        formFiles: (files, filesUrl) => dispatch(formFiles(files, filesUrl)),
+        formDestination: destination => dispatch(formDestination(destination)),
+        formStops: stops => dispatch(formStops(stops)),
+        formStartDate: (date) => dispatch(formStartDate(date)),
+        formEndDate: (date) => dispatch(formEndDate(date)),
+        formTransport: transport => dispatch(formTransport(transport)),
+        formInfo: info => dispatch(formInfo(info))
     }
 }
 

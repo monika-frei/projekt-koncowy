@@ -2,11 +2,13 @@ import authReducer from './authReducer'
 import tripReducer from './tripReducer'
 import searchReducer from './searchReducer'
 import formReducer from '../reducers/formReducers/formReducer'
+import classInvisibleReducer from '../reducers/classInvisibleReducer'
 import { combineReducers } from 'redux'
 import { firestoreReducer } from 'redux-firestore'
 import {firebaseReducer} from 'react-redux-firebase'
 import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
+import EditTripReducer from './editTripReducer'
 
 
 const rootReducer = combineReducers({
@@ -19,7 +21,9 @@ const rootReducer = combineReducers({
     // stops: formReducer,
     // duration: formReducer,
     // info: formReducer,
-    files: formReducer
+    formCreateTrip: formReducer,
+    editTrip: EditTripReducer,
+    classInvisible: classInvisibleReducer
 })
 
 export default rootReducer

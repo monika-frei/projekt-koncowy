@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TripsList from './TripsList';
 import MainSearcher from './MainSearcher';
 import MainSearcherDesktop from './MainSearcherDesktop';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -54,7 +55,9 @@ handleSearch = (e) => {
       <div className = "home">
         <MainSearcher searchButtonActive = {this.props.searchButtonActive} searcherClass = {this.props.searcherClass} search = {this.handleSearch} changeInput = {this.changeInputSearch} searchInputValue = {this.state.searchInputValue} /> 
         <MainSearcherDesktop />
-        <TripsList />
+        <ParallaxProvider>
+          <TripsList />
+        </ParallaxProvider>
       </div>
     );
   }

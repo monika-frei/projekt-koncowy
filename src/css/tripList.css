@@ -14,31 +14,36 @@
 }
 
 .trip__card {
-    width: 250px;
+    position: relative;
+    width: 300px;
     height: 400px;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 5px;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: var(--trip-card-background-color);
+    border: 4px solid var(--trip-card-background-border-color);
 }
 
 
 
 .trip__card__info {
-    height: 70px;
+    height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 
 }
 
 .trip__card__info .destination {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.7rem;
+    font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
     text-align: center;
+    letter-spacing: 1px;
     
 
 }
@@ -50,45 +55,46 @@
     font-weight: 300;
 }
 
-.trip__card__images {
-    width:100%;
-    height: 200px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-bottom: 1rem;
+.trip__card__container {
+    position: relative;
+    height: 320px;
+    width: 100%;
 }
-
-
-.trip__card__decsription {
-    text-align: center;
+.trip__card__images {
+    height: 70%;
+    width: 100%;
+    position: absolute;
     margin-bottom: 1rem;
-    height: 70px;
-    width:150px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    object-fit: cover;
 }
 
 .trip__card__button {
+    position: absolute;
+    bottom: 20px;
+    left: 25%;
     margin: 0 auto;
     cursor: pointer;
     width: 150px;
     height: 50px;
     padding: 0;
-    border: 2px solid;
-    border-color: var(--buttons-fill-color);
+    border: none;
     border-radius: 2px;
-    color: var(--buttons-fill-color);
-    font-weight: 700;
+    color: var(--buttons-font-color);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    position: relative;
     overflow: hidden;
     transition: background-color 0.3s ease;
+    background-color: var(--buttons-primary-color);
+    border: 2px solid var(--buttons-border-color);
 }
 
+
 .trip__card__button:hover {
-    color: var(--trip-card-background-color);
+    color: #F7F7FA;
     background-color: var(--buttons-fill-color);
+    border-color: var(--buttons-fill-color);
 }
 
 @media all and (min-width: 480px) and (max-width: 767px) {

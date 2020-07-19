@@ -28,7 +28,7 @@ class MainSearcherDesktop extends Component {
     render() {
         const searcher = 
         <form id="main__searcher--desktop" onSubmit={this.props.search}>
-            <input type="text" id="main__searcher__input" placeholder="Where are you going?" value={this.searchTrip} onChange ={this.changeInput}></input>
+            <input type="text" id="main__searcher__input" placeholder="e.g. Poland" value={this.searchTrip} onChange ={this.changeInput}></input>
             <button id= "main__search" className="search__button" onClick = {this.handleButton}><i className= "icon__search"></i></button>
         </form>;
         return searcher;

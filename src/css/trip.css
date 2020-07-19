@@ -1,32 +1,34 @@
 .wrapper {
- 
     margin-bottom: 2rem;
+    position: relative;
+    
 }
+.trip__wrapper {
+    position: absolute;
+    top: 300px;
+}
+
 .trip__container {
-    width: 70%;
-    margin: 0.5rem auto;
+    margin: 0 auto;
     padding: 1rem;
-    background-color: var(--trip-card-background-color);
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: var( --trip-background-color);
+    color: var(--trip-font-color);
 }
 
-.trip__container .trip__created {
-    align-self: flex-end;
-} 
 
 
+div.trip__container:nth-of-type(1) {
+    margin-top: 0;
+}
 
 .trip__container .trip__destination {
     text-align: center;
+    color: var(--trip-destination-font-color);
     font-size: 1.2rem;
-    margin-top: 0.5rem;
-    letter-spacing: 1px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--main-search-primary-color);
 }
 
 .trip__container .trip__duration {
@@ -36,18 +38,42 @@
     font-size: 1rem;   
 }
 
-.trip__container .trip__stops {    
-    border-bottom: 1px solid var(--logo-animation-color-text);
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-
+.trip__basic__info--wrapper {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.trip__container .trip__stops .stops {
+.head__image {
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+    top:-300px;
+}
+
+.head__image img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+    
+}
+.trip__basic__info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trip__basic__info h3 {
+    color: var(--trip-h3-color);
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+.trip__basic__info__list {
     font-weight: 300;
-    margin-bottom: 1.5rem; 
-    font-size: 1rem; 
-    width: 70%;
+    font-size: 1.5rem; 
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
@@ -55,22 +81,137 @@
     flex-wrap: wrap;
 }
 
-.trip__container .trip_stops .stops li {
+.trip__basic__info__list li, .trip__basic__info__transport li {
     display: inline-block;
     margin-right: 1rem;
 }
 
-.trip__container .stops {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
+.trip__basic__info__transport {
+    margin-top: 2rem;
+    /* display: flex;
     justify-content: center;
-
+    flex-wrap: wrap; */
 }
 
+.transport__icon {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.bus {
+    background-image: url('../images/double-decker-bus.svg');
+}
+.bus:hover::after {
+    content: 'bus';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.car {
+    background-image: url('../images/automotive.svg');
+}
+.car:hover::after {
+    content: 'car';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.airplane {
+    background-image: url('../images/plane.svg');
+}
+.airplane:hover::after {
+    content: 'airplane';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.train {
+    background-image: url('../images/train.svg');
+}
+.train:hover::after {
+    content: 'train';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.ship {
+    background-image: url('../images/ship.svg');
+}
+.ship:hover::after {
+    content: 'boat';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.hitchhiking {
+    background-image: url('../images/hitchhiker.svg');
+}
+.hitchhiking:hover::after {
+    content: 'hitchhiking';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.bike {
+    background-image: url('../images/bike.svg');
+}
+.bike:hover::after {
+    content: 'bike';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+.onfoot {
+    background-image: url('../images/mountain.svg');
+}
+.onfoot:hover::after {
+    content: 'on foot';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+
+
 .trip__container .trip__description {
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     text-align: justify;
-    margin-bottom: 1rem;
+    columns: 2 300px;
+}
+
+.trip__description::first-letter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--trip-destination-font-color);
 }
 
 .trip__container .trip__author {
@@ -108,16 +249,148 @@
     margin-bottom: 1rem;
 }
 
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(20, 10vw);
+    grid-gap: 15px;
+}
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+}
+.gallery__img:hover {
+    transform: scale(1.03)
+}
+.image__preview {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:-550px;
+    left: 0;
+    z-index: 1;
+    background-color: var(--trip-background-image-preview-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@keyframes kenburns-top {
+    0% {
+        transform: scale(0) translateY(0);
+    }
+    100% {
+        transform: scale(1.00) translateY(-15px);
+        transform-origin: top;
+    }
+}
+.image__preview img {
+    width: 60vw;
+    height: 80vh;
+    object-fit: contain;
+    align-self: center;
+    animation: kenburns-top 0.4s ease-out both;
+    
+}
+.slider__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider__buttons button {
+    margin: 0 30px;
+    align-self: center;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: none;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.slider__buttons .btn--close  {
+    background-image: url('../images/closeImage.svg');
+    width: 50px;
+    height: 50px;
+}
+.slider__buttons .btn--prev  {
+    background-image: url('../images/return.svg');
+}
+.slider__buttons .btn--next  {
+    background-image: url('../images/next.svg');
+}
+.image__preview--close {
+    display: none;
+}
+.image__preview--open {
+    display: block;
+}
+
+.gallery--invisible {
+    display: none;
+}
+.gallery__item {
+    cursor: pointer;
+}
+.gallery__item--1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.gallery__item--12 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+.gallery__item--23 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 7;
+    grid-row-end: 9;
+}
+.gallery__item--34 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 10;
+    grid-row-end: 12;
+}
+.gallery__item--45 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 13;
+    grid-row-end: 15;
+}
+.gallery__item--56 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 16;
+    grid-row-end: 17;
+}
+.gallery__item--67 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 18;
+    grid-row-end: 20;
+}
+.invisible {
+    display: none;
+}
+
+
 @media all and (min-width: 1224px) {
     .trip__container {
-        width: 60%;
+        width: 80%;
         padding-left:4rem;
         padding-right:4rem;
-        margin-top: 2rem;
     }
 
     .trip__container .trip__destination {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .trip__btn:hover {
@@ -126,10 +399,6 @@
         border: 2px solid;
         border-color: var(--buttons-fill-color);
     
-    }
-
-    .trip__container .trip__destination {
-        font-size: 2rem;
     }
 
      .trip__container .trip__created {
