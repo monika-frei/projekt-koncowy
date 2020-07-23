@@ -44,7 +44,8 @@
     margin-bottom: 0.5rem;
     text-align: center;
     letter-spacing: 1px;
-    
+    font-family: var(--logo-font-family);
+    text-transform: capitalize;
 
 }
 
@@ -97,13 +98,13 @@
     border-color: var(--buttons-fill-color);
 }
 
-@media all and (min-width: 480px) and (max-width: 767px) {
+@media all and (min-width: 480px){
     .main__content {
         grid-template-columns: auto auto;
     }
 }
 
-@media all and (min-width: 768px) and (max-width: 1223px) {
+@media all and (min-width: 768px){
     .main__content {
         grid-template-columns: auto auto auto;
     }

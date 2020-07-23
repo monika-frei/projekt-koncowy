@@ -4,7 +4,7 @@ import { filterTrips } from '../../store/actions/searchActions'
 
 
 
-class MainSearcherDesktop extends Component {
+class Search extends Component {
 
     state = {
         searchTrip: ""
@@ -47,4 +47,4 @@ const mapDispatchToProps = dispatch => {
 
 
 export default connect(mapStateToProps,
-    mapDispatchToProps)(MainSearcherDesktop);
+    mapDispatchToProps)(Search);

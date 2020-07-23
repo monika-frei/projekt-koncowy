@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom'
 import { deleteTrip, editTrip, formFiles,formDestination, formStops, formStartDate, formEndDate, formTransport, formInfo } from '../../store/actions/tripActions'
+import TripButtons from './TripButtons'
 
 
 
@@ -49,7 +50,6 @@ class UserPanel extends Component {
                     return (
                         <div className="trip" key={trip.id}>
                             <img className= "trip__images" src = {trip.imagesUrl[0]}></img>
-                            
                             <div className = "user__trip__info">
                                 <div className="trip__info">
                                     <h1 className= "destination">{trip.destination}</h1>
@@ -58,13 +58,7 @@ class UserPanel extends Component {
                                 </div>
                                 <div className= "trip__more">
                                     <div className= "trip__decsription">{shortInfo} [...]</div>
-                                    <div className = "trip__buttons">
-                                        <button className="trip__button" onClick={() => this.handleDeleteButton(trip)}>Delete</button>
-                                        <button className="trip__button" onClick={() => this.handleEditButton(trip)}>Edit</button>
-                                        <Link to= {'/trip/' + trip.id}>
-                                            <button className="trip__button">More</button>
-                                        </Link>
-                                    </div>
+                                    <TripButtons trip = {trip} handleDeleteButton = {this.handleDeleteButton} handleEditButton = {this.props.handleEditButton} />
                                 </div>
                             </div>
                         </div>

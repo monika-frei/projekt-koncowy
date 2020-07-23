@@ -10,34 +10,21 @@ import CreateTrip from './components/trips/CreateTrip';
 import UserPanel from './components/dashboard/UserPanel';
 import UpdateTrip from './components/trips/UpdateTrip';
 import { connect } from 'react-redux'
+import { filterTrips } from './store/actions/searchActions'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      searcherClass: "",
-      searchButtonActive: false,
-      iconSearchClass: "icon__search",
-      backToMain: false,
       tripId: null,
       dataToEdit: null
     }
 }
 
-  handleShowSearch = (e) => {
-    e.preventDefault();    
-    if(this.state.searchButtonActive) {
-      this.setState({searcherClass: "main__searcher--active", searchButtonActive: false, iconSearchClass: "icon__search"})
-    } else {
-      this.setState({searcherClass: "", searchButtonActive: true, iconSearchClass: "icon__search--active"})
-    }
-  }
-
   handleMainContent = (e) => {
     e.preventDefault();
-    this.setState({backToMain: true})
-    
+    this.props.filterTrips("")
   }
 
   handleEditButton = (trip) => {
@@ -66,7 +53,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className = "App">
-          <Header showSearch = {this.handleShowSearch} searcherClass = {this.state.iconSearchClass} handleMainContent = {this.handleMainContent}/>
+          <Header handleMainContent = {this.handleMainContent}/>
           <Switch>
             <Route exact path = '/' render = {(props) => <HomePage {...props} searcherClass = {this.state.searcherClass} searchButtonActive = {this.state.searchButtonActive} backToMain = {this.state.backToMain} />} />
             <Route path = '/trip/:id' component= { Trip }/>
@@ -88,4 +75,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+      filterTrips: (value) => dispatch(filterTrips(value))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

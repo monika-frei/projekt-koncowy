@@ -5,7 +5,7 @@
 }
 .trip__wrapper {
     position: absolute;
-    top: 300px;
+    top: 200px;
 }
 
 .trip__container {
@@ -13,6 +13,9 @@
     padding: 1rem;
     background-color: var( --trip-background-color);
     color: var(--trip-font-color);
+}
+.react-parallax-content div {
+    height: 200px;
 }
 
 
@@ -24,11 +27,12 @@ div.trip__container:nth-of-type(1) {
 .trip__container .trip__destination {
     text-align: center;
     color: var(--trip-destination-font-color);
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    font-family: var(--logo-font-family);
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .trip__container .trip__duration {
@@ -59,7 +63,7 @@ div.trip__container:nth-of-type(1) {
     
 }
 .trip__basic__info {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +77,6 @@ div.trip__container:nth-of-type(1) {
 
 .trip__basic__info__list {
     font-weight: 300;
-    font-size: 1.5rem; 
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
@@ -83,19 +86,17 @@ div.trip__container:nth-of-type(1) {
 
 .trip__basic__info__list li, .trip__basic__info__transport li {
     display: inline-block;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
 }
 
 .trip__basic__info__transport {
     margin-top: 2rem;
-    /* display: flex;
-    justify-content: center;
-    flex-wrap: wrap; */
 }
 
 .transport__icon {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
@@ -199,11 +200,24 @@ div.trip__container:nth-of-type(1) {
     color: var(--trip-h3-color);
 }
 
+.other {
+    background-image: url('../images/spaceship.svg');
+}
+.other:hover::after {
+    content: 'other';
+    display: block;
+    position: absolute;
+    top: 60px;
+    width: 50px;
+    height: 30px;
+    color: var(--trip-h3-color);
+}
+
 
 .trip__container .trip__description {
     margin: 1rem auto;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.2rem;
     text-align: justify;
     columns: 2 300px;
 }
@@ -246,18 +260,17 @@ div.trip__container:nth-of-type(1) {
 
 .trip__container img {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 2fr);
-    grid-template-rows: repeat(20, 10vw);
-    grid-gap: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .gallery__img {
     width: 100%;
-    height: 100%;
+    height: 250px;
     object-fit: cover;
     transform: scale(1);
     transition: all 0.3s ease-in-out;
@@ -269,7 +282,7 @@ div.trip__container:nth-of-type(1) {
     width: 100vw;
     height: 100vh;
     position: absolute;
-    top:-550px;
+    top:0;
     left: 0;
     z-index: 1;
     background-color: var(--trip-background-image-preview-color);
@@ -287,13 +300,12 @@ div.trip__container:nth-of-type(1) {
     }
 }
 .image__preview img {
-    width: 60vw;
-    height: 80vh;
+    width: 100%;
     object-fit: contain;
     align-self: center;
     animation: kenburns-top 0.4s ease-out both;
-    
 }
+
 .slider__buttons {
     display: flex;
     justify-content: center;
@@ -302,8 +314,8 @@ div.trip__container:nth-of-type(1) {
 .slider__buttons button {
     margin: 0 30px;
     align-self: center;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     border: none;
     background-color: transparent;
@@ -313,8 +325,8 @@ div.trip__container:nth-of-type(1) {
 }
 .slider__buttons .btn--close  {
     background-image: url('../images/closeImage.svg');
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 .slider__buttons .btn--prev  {
     background-image: url('../images/return.svg');
@@ -335,62 +347,59 @@ div.trip__container:nth-of-type(1) {
 .gallery__item {
     cursor: pointer;
 }
-.gallery__item--1 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 3;
+
+.user__buttons .trip__button {
+    margin-right: 20px;
 }
-.gallery__item--12 {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 4;
-    grid-row-end: 6;
-}
-.gallery__item--23 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 7;
-    grid-row-end: 9;
-}
-.gallery__item--34 {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 10;
-    grid-row-end: 12;
-}
-.gallery__item--45 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 13;
-    grid-row-end: 15;
-}
-.gallery__item--56 {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 16;
-    grid-row-end: 17;
-}
-.gallery__item--67 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 18;
-    grid-row-end: 20;
-}
+
 .invisible {
     display: none;
 }
 
 
-@media all and (min-width: 1224px) {
+@media all and (min-width: 768px) {
+    
+    .trip__wrapper {
+        top: 300px;
+    }
+
     .trip__container {
         width: 80%;
         padding-left:4rem;
         padding-right:4rem;
     }
 
+    .react-parallax-content div {
+        height: 600px;
+    }
+
     .trip__container .trip__destination {
         font-size: 3rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .trip__basic__info {
+        width: 50%;
+    }
+
+    .trip__basic__info__transport {
+        margin-bottom: 2.5rem;
+    }
+
+    .trip__basic__info__list li, .trip__basic__info__transport li {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .transport__icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .trip__container .trip__description {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
     }
 
     .trip__btn:hover {
@@ -405,6 +414,111 @@ div.trip__container:nth-of-type(1) {
         align-self: flex-end;
     } 
 
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 2fr);
+        grid-template-rows: repeat(20, 10vw);
+        grid-gap: 15px;
+    }
 
+    .gallery__item--1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .gallery__item--12 {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 6;
+    }
+    .gallery__item--23 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 9;
+    }
+    .gallery__item--34 {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 10;
+        grid-row-end: 12;
+    }
+    .gallery__item--45 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 13;
+        grid-row-end: 15;
+    }
+    .gallery__item--56 {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 16;
+        grid-row-end: 17;
+    }
+    .gallery__item--67 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 18;
+        grid-row-end: 20;
+    }
 
+    .trip__container img {
+        margin-bottom: 1rem;
+    }
+
+    .gallery__img {
+        height: 100%;
+    }
+
+    .image__preview {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top:0;
+        left: 0;
+        z-index: 1;
+        background-color: var(--trip-background-image-preview-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .image__preview img {
+        width: 60%;
+        height: 80%;
+    }
+    .image__preview--close {
+        display: none;
+    }
+    .image__preview--open {
+        display: block;
+    }
+    
+    .gallery--invisible {
+        display: none;
+    }
+    .gallery__item {
+        cursor: pointer;
+    }
+
+    .slider__buttons button {
+        width: 60px;
+        height: 60px;
+     }
+
+    .slider__buttons .btn--close  {
+        width: 50px;
+        height: 50px;
+    }
+
+    .slider__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .invisible {
+        display: none;
+    }
 }

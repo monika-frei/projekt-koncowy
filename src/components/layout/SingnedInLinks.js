@@ -7,9 +7,10 @@ import { filterTrips } from '../../store/actions/searchActions'
 
 class SignedInLinks extends Component {
 
-    handleMainContent = () => {
-        const value = ""
-        this.props.filterTrips(value)
+    handleMainContent = (e) => {
+        e.preventDefault();
+        this.props.filterTrips("")
+        this.props.handleCloseMenu(e)
     }
     
     render(){
@@ -18,10 +19,10 @@ class SignedInLinks extends Component {
             <nav className= {this.props.classActiveNav}>
                 <ul>
                     <li onClick={this.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color: '#040505'} }>Home</NavLink></li>
-                    <li><NavLink to='/createtrip' style= {{textDecoration: 'none', color: '#040505'}}>Create a new trip</NavLink></li>
-                    <li><NavLink to='/userpanel' style= {{textDecoration: 'none', color: '#040505'}}>Saved trips</NavLink></li>
-                    <li><a onClick={this.props.signOut}>Log out</a></li>
-                    <li className = "navigation__user--logged">{this.props.profile.firstName}</li>
+                    <li onClick = {this.props.handleCloseMenu}><NavLink to='/createtrip' style= {{textDecoration: 'none', color: '#040505'}}>Create a new trip</NavLink></li>
+                    <li onClick = {this.props.handleCloseMenu}><NavLink to='/userpanel' style= {{textDecoration: 'none', color: '#040505'}}>Saved trips</NavLink></li>
+                    <li onClick = {this.props.handleCloseMenu}><a onClick={this.props.signOut}>Log out</a></li>
+                    <li className = "navigation__user--logged" onClick = {this.props.handleCloseMenu}>{this.props.profile.firstName}</li>
                 </ul>
             </nav>
         )

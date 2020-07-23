@@ -2,8 +2,9 @@
  
     --home-background-color:           #F7F7FA;
     --header-background-color:   #F7F7FA;
-    --logo-primary-color: #28251F;
-    --logo-animation-color: #EB9412;
+    --logo-primary-color: #127E8B;
+    --logo-animation-color: #55C2B8;
+    --logo-shadow-color:  #A1A0A7;
     --logo-animation-color-text: rgba(4,5,5,0.8);
     --trip-card-background-color:   #EEEEF1;
     --trip-card-background-border-color:  #F7F7FA;
@@ -11,7 +12,7 @@
     --trip-font-color: #28251F;
     --trip-destination-font-color: #28251F;
     --trip-card-border-color: #28251F; 
-    --trip-h3-color: #EB9412;
+    --trip-h3-color: #55C2B8;
     --trip-background-image-preview-color: #28251F;
 
     --form-background-color:  transparent;
@@ -20,15 +21,17 @@
     --form-input-background-color: #EDEDEC;
     --form-btn-border-color: #28251F;
     --form-btn-hover-color: #EDEDEC;
-    --nav-user-color: #EB9412 ; 
+    --nav-user-color: #55C2B8 ; 
     /* #FED99C tło do paska wyszukiwania */
     --main-search-primary-color: transparent;
+    --main-search-background-color-mobile: #fff;
+    --main-search-border-color: #28251F;
     --buttons-fill-color: #28251F ;
     --buttons-border-color: #28251F;
     --buttons-primary-color: #EDEDEC;;
     --buttons-font-color: #28251F;
 
-    --hamburger-menu-primary-color:#EDEDEC;
+    --hamburger-menu-primary-color:#28251F;
     --hamburger-menu-background-color: rgba(255,255,255,0.9);
     --header-primary-color:    #F9F9F9;
     --menu-overlay-color: #1d1716;
@@ -38,7 +41,7 @@
     --media-query-width-large: 1008px;
 
     --main-font-family: 'Roboto',Arial, sans-serif;
-    --logo-font-family: 'Bangers';
+    --logo-font-family: 'Roboto',Arial, sans-serif;
     --main-font-size: 16px;
 
 }

@@ -53,7 +53,7 @@ class Summary extends Component {
         const images = files.map((file, index) => {
             return (
                 <li key = {index}>
-                    <img src= {file} style = {{width: '300px'}}></img>
+                    <img src= {file}></img>
                 </li>
             )
         })

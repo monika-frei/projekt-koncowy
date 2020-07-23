@@ -6,6 +6,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
 import { filterTrips } from '../../store/actions/searchActions'
+import { classInvisible } from '../../store/actions/tripActions'
+import { deleteTrip, editTrip, formFiles,formDestination, formStops, formStartDate, formEndDate, formTransport, formInfo } from '../../store/actions/tripActions'
 import ImagesGrid from './ImagesGrid'
 import { Parallax } from 'react-parallax';
 
@@ -13,10 +15,11 @@ class Trip extends Component {
 
     constructor(props) {
         super(props)
-        this.myRef = React.createRef() 
         this.state = {
-            src: '',
-            numberOfImage:0
+            imageOpenIndex: null,
+            imageOpen: "",
+            previewAction: "image__preview--close",
+            galleryInvisible: ""
         }
     }
 
@@ -25,54 +28,103 @@ class Trip extends Component {
         this.props.filterTrips(value)
     }
 
-    handleNext = () => {
-        const imagesUrl = this.props.trip.imagesUrl;
-        const numberOfImage = this.state.numberOfImage;
-        if (numberOfImage < imagesUrl.length - 1 && numberOfImage >= 0) {
-            let nextNumber = numberOfImage + 1;
-            this.setState({numberOfImage: nextNumber})
-        } else {
-            let nextNumber = 0;
-            this.setState({numberOfImage: nextNumber})
-        } 
-        
-    }
-    handlePrev = () => {
-        const imagesUrl = this.props.trip.imagesUrl;
-        const numberOfImage = this.state.numberOfImage;
-        if (numberOfImage > 0) {
-            let nextNumber = numberOfImage - 1;
-            this.setState({numberOfImage: nextNumber})
-        } else {
-            let nextNumber = imagesUrl.length - 1;
-            this.setState({numberOfImage: nextNumber})
-        } 
+    handleDisplayOriginalImage = (e,index) => {
+        const imageOpen = e.target.src
+        this.setState({
+            imageOpen,
+            imageOpenIndex: index,
+            previewAction: "image-preview--open",
+            invisible: "invisible"
+        })      
+        this.props.classInvisible("invisible")
     }
 
-    scrollToGallery = () => {
-        window.scrollTo(0, this.myRef.current.offsetTop)
+
+    handleCloseOriginalImage = (e) => {
+        e.preventDefault();
+        this.setState({
+            imageOpen: "",
+            previewAction: "image__preview--close",
+            invisible: ""
+        })
+        this.props.classInvisible("")
     }
+
+    handlePrevOriginalImage = (e) => {
+        e.preventDefault();
+        const imagesArray = this.props.trip.imagesUrl
+        const arrayLength = imagesArray.length;
+        this.setState(prevState => ({
+            imageOpenIndex: prevState.imageOpenIndex > 0 ? prevState.imageOpenIndex -1 : arrayLength -1 
+        }))
+    }
+
+    handleNextOriginalImage = (e) => {
+        e.preventDefault();
+        const imagesArray = this.props.trip.imagesUrl
+        const arrayLength = imagesArray.length;
+        this.setState(prevState => ({
+            imageOpenIndex: prevState.imageOpenIndex < arrayLength -1 ? prevState.imageOpenIndex +1 : 0
+        }))
+    }
+
+    handleDeleteButton = (trip) => { 
+        const id = trip.id;   
+         this.props.deleteTrip(id)
+         this.props.history.push('/')
+    }
+    handleEditButton = (trip) => {
+        const id = trip.id;   
+        const destination = trip.destination;
+        const stops = trip.stops;
+        const startDate = trip.startDate;
+        const endDate = trip.endDate;
+        const transportArray = trip.transport;
+        const files = [];
+        const filesUrl = trip.imagesUrl;
+        const value = trip.info;
+
+        this.props.editTrip(id);
+        this.props.formFiles(files,filesUrl);
+        this.props.formDestination(destination);
+        this.props.formStops(stops);
+        this.props.formStartDate(startDate);
+        this.props.formEndDate(endDate);
+        this.props.formTransport(transportArray);
+        this.props.formInfo(value)
+        this.props.history.push('/updatetrip')
+    }
+
+
 
     render() {
         const { trip } = this.props;
+        let userButtons;
         
-        let images;
-        if (trip) {
-            const imagesUrl = trip.imagesUrl
-            console.log(imagesUrl)
-            images = <img src={imagesUrl[this.state.numberOfImage]} style={{width: "700px"}}></img>
-        }
+
         if(trip) { 
-            const imagesUrl = trip.imagesUrl
+            const auth = this.props.auth.uid;
+            const tripAuthId = trip.authorId;
+            console.log(auth, tripAuthId)
+            if(auth == tripAuthId) {
+                userButtons = <div className = "user__buttons">
+                <button className="trip__button" onClick={() => this.handleDeleteButton(trip)}>Delete</button>
+                <button className="trip__button" onClick={() => this.handleEditButton(trip)}>Edit</button>
+            </div>
+            } else {userButtons = null}
+
+            const imagesUrl = trip.imagesUrl;
+
             return (<div className="wrapper">
-                <div className = {this.props.classInvisible}>
+                <div className = {this.state.classInvisible}>
                     <Parallax bgImage = {imagesUrl[0]} strength = {800}>
-                            <div style = {{height: 600}}></div>
+                            <div></div>
                     </Parallax>
                 </div>
-                <div className = "trip__wrapper">
-                    <article className = {this.props.classInvisible}>
+                <div className = {`trip__wrapper ${this.state.invisible}`}>
+                    <article>
                             <div className = "trip__container">
+                                { userButtons }
                                 <h1 className = "trip__destination">{trip.destination}</h1>
                                 <h2 className= "trip__duration">{trip.startDate}</h2>
                                 <h2 className= "trip__duration">{trip.endDate}</h2>
@@ -97,8 +149,17 @@ class Trip extends Component {
                                 </div>
                             </div>
                         </article>
-                        <div className = "trip__container" ref={this.myRef} >
-                            <ImagesGrid  images = {imagesUrl} scrollToGallery = {this.scrollToGallery}/>
+                        <div className = "trip__container">
+                            <ImagesGrid  images = {imagesUrl} handleDisplayOriginalImage = {this.handleDisplayOriginalImage} />
+                        </div>
+                            
+                    </div>
+                    <div className = {`image__preview ${this.state.previewAction}`}>
+                        <img src = {imagesUrl[this.state.imageOpenIndex]}></img>
+                        <div className = "slider__buttons">
+                            <button className="btn btn--prev" onClick = {this.handlePrevOriginalImage}></button>
+                            <button className="btn btn--close" onClick = {this.handleCloseOriginalImage}></button>
+                            <button className="btn btn--next" onClick = {this.handleNextOriginalImage}></button>
                         </div>
                     </div>
                 </div>)
@@ -115,13 +176,24 @@ const mapStateToProps = (state, ownProps) => {
     return {
         trip,
         id,
-        classInvisible
+        classInvisible,
+        auth: state.firebase.auth
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        filterTrips: value => dispatch(filterTrips(value))
+        filterTrips: value => dispatch(filterTrips(value)),
+        classInvisible: value => dispatch(classInvisible(value)),
+        deleteTrip: (id) => dispatch(deleteTrip(id)),
+        editTrip: (id) => dispatch(editTrip(id)),
+        formFiles: (files, filesUrl) => dispatch(formFiles(files, filesUrl)),
+        formDestination: destination => dispatch(formDestination(destination)),
+        formStops: stops => dispatch(formStops(stops)),
+        formStartDate: (date) => dispatch(formStartDate(date)),
+        formEndDate: (date) => dispatch(formEndDate(date)),
+        formTransport: transport => dispatch(formTransport(transport)),
+        formInfo: info => dispatch(formInfo(info))
     }
 }
 
