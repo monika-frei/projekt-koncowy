@@ -55,7 +55,7 @@ class App extends Component {
         <div className = "App">
           <Header handleMainContent = {this.handleMainContent}/>
           <Switch>
-            <Route exact path = ''>
+            <Route>
               <Redirect to = "/home"></Redirect>
             </Route>
             <Route exact path = '/home' render = {(props) => <HomePage {...props} searcherClass = {this.state.searcherClass} searchButtonActive = {this.state.searchButtonActive} backToMain = {this.state.backToMain} />} />
