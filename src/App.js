@@ -55,16 +55,14 @@ class App extends Component {
         <div className = "App">
           <Header handleMainContent = {this.handleMainContent}/>
           <Switch>
-            <Route exact path = '/'>
-                <Redirect to = "/home"></Redirect>
-            </Route>
-            <Route path = '/home' component = { HomePage } />
+            <Route exact path = '/home' component = { HomePage } />
             <Route path = '/trip/:id' component= { Trip }/>
             <Route path = '/signin' component= { SignIn }/>
             <Route path = '/signup' component= { SignUp }/>
             <Route path = '/createtrip' component= { CreateTrip }/>
             <Route path = '/updatetrip' component= { UpdateTrip }/>
             <Route path = '/userpanel' render= { (props) => <UserPanel {...props} handleEditButton = {this.handleEditButton} /> } />
+            <Route component = { HomePage } />
           </Switch>
         </div>
       </BrowserRouter>
