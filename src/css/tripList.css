@@ -44,7 +44,7 @@
     margin-bottom: 0.5rem;
     text-align: center;
     letter-spacing: 1px;
-    font-family: var(--logo-font-family);
+    font-family: var(--heading-font-family);
     text-transform: capitalize;
 
 }
@@ -89,6 +89,7 @@
     transition: background-color 0.3s ease;
     background-color: var(--buttons-primary-color);
     border: 2px solid var(--buttons-border-color);
+    
 }
 
 

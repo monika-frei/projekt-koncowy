@@ -2,8 +2,7 @@
  
     --home-background-color:           #F7F7FA;
     --header-background-color:   #F7F7FA;
-    --logo-primary-color: #127E8B;
-    --logo-animation-color: #55C2B8;
+    --logo-primary-color:#F7F7FA;
     --logo-shadow-color:  #A1A0A7;
     --logo-animation-color-text: rgba(4,5,5,0.8);
     --trip-card-background-color:   #EEEEF1;
@@ -12,7 +11,7 @@
     --trip-font-color: #28251F;
     --trip-destination-font-color: #28251F;
     --trip-card-border-color: #28251F; 
-    --trip-h3-color: #55C2B8;
+    --trip-h3-color: #FF8528;
     --trip-background-image-preview-color: #28251F;
 
     --form-background-color:  transparent;
@@ -21,7 +20,7 @@
     --form-input-background-color: #EDEDEC;
     --form-btn-border-color: #28251F;
     --form-btn-hover-color: #EDEDEC;
-    --nav-user-color: #55C2B8 ; 
+    --nav-user-color: #FF8528 ; 
     /* #FED99C tło do paska wyszukiwania */
     --main-search-primary-color: transparent;
     --main-search-background-color-mobile: #fff;
@@ -41,7 +40,8 @@
     --media-query-width-large: 1008px;
 
     --main-font-family: 'Roboto',Arial, sans-serif;
-    --logo-font-family: 'Roboto',Arial, sans-serif;
+    --heading-font-family: 'Montserrat', sans-serif;
+    --logo-font-family: 'Montserrat', sans-serif;
     --main-font-size: 16px;
 
 }

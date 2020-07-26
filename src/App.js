@@ -56,9 +56,9 @@ class App extends Component {
           <Header handleMainContent = {this.handleMainContent}/>
           <Switch>
             <Route exact path = '/'>
-              <Redirect to = "/home"></Redirect>
+                <Redirect to = "/home"></Redirect>
             </Route>
-            <Route path = '/home' render = {(props) => <HomePage {...props} searcherClass = {this.state.searcherClass} searchButtonActive = {this.state.searchButtonActive} backToMain = {this.state.backToMain} />} />
+            <Route path = '/home' component = { HomePage } />
             <Route path = '/trip/:id' component= { Trip }/>
             <Route path = '/signin' component= { SignIn }/>
             <Route path = '/signup' component= { SignUp }/>

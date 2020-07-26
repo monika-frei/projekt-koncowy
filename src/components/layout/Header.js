@@ -52,7 +52,7 @@ class Header extends Component {
         return (<>
             <div className = {`header--wrapper ${this.props.classInvisible}`}>
                 <div className='header'>
-                    <div className="logo"><p className= "link--logo" to="/" data-letters= "Adventure" onClick = {this.props.handleMainContent}><Link to='/home' style= {{textDecoration: 'none', color: '#28251F'}}>Adventure</Link></p></div>
+                    <div className="logo"><p className= "link--logo" to="/" data-letters= "Adventure" onClick = {this.props.handleMainContent}><Link to='/home' style= {{textDecoration: 'none', color: 'yellow'}}>Adventure</Link></p></div>
                     <MobileMenu handleHamburger = {this.handleHamburger} classActiveNav = {this.state.classActiveNav} classActive = {this.state.classActive} showSearch = {this.props.showSearch} searcherClass = {this.props.searcherClass} handleCloseMenu = {this.handleCloseMenu}/>
                 </div>
                 { links }

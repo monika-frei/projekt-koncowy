@@ -27,7 +27,7 @@ div.trip__container:nth-of-type(1) {
 .trip__container .trip__destination {
     text-align: center;
     color: var(--trip-destination-font-color);
-    font-family: var(--logo-font-family);
+    font-family: var(--heading-font-family);
     font-size: 1.4rem;
     margin-top: 1rem;
     margin-bottom: 1rem;

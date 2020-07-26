@@ -1,6 +1,6 @@
 {
   "name": "myapp",
-  "homepage": "https://monika-frei.github.io/projekt-koncowy/build",
+  "homepage": "https://monika-frei.github.io/projekt-koncowy/build/",
   "version": "0.1.0",
   "private": true,
   "engines": {
