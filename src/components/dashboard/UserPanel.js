@@ -15,7 +15,7 @@ class UserPanel extends Component {
     handleDeleteButton = (trip) => { 
         const id = trip.id;   
          this.props.deleteTrip(id)
-         this.props.history.push('/')
+         this.props.history.push('/home')
     }
     handleEditButton = (trip) => {
         const id = trip.id;   
@@ -41,7 +41,7 @@ class UserPanel extends Component {
 
     render() {
             const { auth, trips } = this.props
-            if (!auth.uid) return <Redirect to='/'></Redirect>
+            if (!auth.uid) return <Redirect to='/home'></Redirect>
             const tripsFiltered = trips && trips.filter((trip) => {
                 return (trip.authorId === auth.uid ? trip : null)
             })

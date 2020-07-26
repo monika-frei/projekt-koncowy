@@ -46,7 +46,7 @@ class UpdateTrip extends Component {
         const files = this.props.files;
         if(files) {
             this.props.updateTrip(newTrip,id)
-            this.props.history.push('/')
+            this.props.history.push('/home')
         }
     }
 

@@ -43,7 +43,7 @@ class CreateTrip extends Component {
         const files = this.props.files;
         if(files) {
             this.props.createTrip(newTrip)
-            this.props.history.push('/')
+            this.props.history.push('/home')
         }
     }
 

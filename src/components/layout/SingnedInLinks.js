@@ -18,7 +18,7 @@ class SignedInLinks extends Component {
         return (
             <nav className= {this.props.classActiveNav}>
                 <ul>
-                    <li onClick={this.handleMainContent}><NavLink to='/' style= {{textDecoration: 'none', color: '#040505'} }>Home</NavLink></li>
+                    <li onClick={this.handleMainContent}><NavLink to='/home' style= {{textDecoration: 'none', color: '#040505'} }>Home</NavLink></li>
                     <li onClick = {this.props.handleCloseMenu}><NavLink to='/createtrip' style= {{textDecoration: 'none', color: '#040505'}}>Create a new trip</NavLink></li>
                     <li onClick = {this.props.handleCloseMenu}><NavLink to='/userpanel' style= {{textDecoration: 'none', color: '#040505'}}>Saved trips</NavLink></li>
                     <li onClick = {this.props.handleCloseMenu}><a onClick={this.props.signOut}>Log out</a></li>

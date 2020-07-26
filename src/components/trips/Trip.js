@@ -71,7 +71,7 @@ class Trip extends Component {
     handleDeleteButton = (trip) => { 
         const id = trip.id;   
          this.props.deleteTrip(id)
-         this.props.history.push('/')
+         this.props.history.push('/home')
     }
     handleEditButton = (trip) => {
         const id = trip.id;   

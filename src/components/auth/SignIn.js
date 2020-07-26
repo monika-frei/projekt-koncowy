@@ -23,7 +23,7 @@ class SignIn extends Component {
 
     render() {
         const { authError, auth } = this.props
-        if( auth.uid ) return <Redirect to ='/'></Redirect>
+        if( auth.uid ) return <Redirect to ='/home'></Redirect>
         return(
         <div className = "form__container">
             <form onSubmit={this.handleSubmit} autoComplete ="off">
