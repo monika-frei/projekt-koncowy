@@ -12,6 +12,7 @@ The project was created as a final project of the course in CodersLab.
 ## Technologies and tools
 
 * React(Redux, Router)
+* API
 * CSS
 * Firebase, Firestore
 
