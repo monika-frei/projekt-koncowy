@@ -1,3 +1,21 @@
+# ADVENTURE 
+Web app that enables to save trips (description and photos) and find some interesting ones.
+
+## Demo
+
+https://monika-frei.github.io/projekt-koncowy/build
+
+## General info
+
+The project was created as a final project of the course in CodersLab. 
+
+## Technologies and tools
+
+* React(Redux, Router)
+* CSS
+* Firebase, Firestore
+
+## Setup
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -11,11 +29,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
